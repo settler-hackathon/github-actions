@@ -4,8 +4,7 @@ on:
   workflow_dispatch:
 
 jobs:
-  build:
-
+  test-versions:
     runs-on: ubuntu-latest
     strategy:
       fail-fast: false
@@ -20,3 +19,26 @@ jobs:
         python-version: ${{ matrix.python-version }}
     - name: Confirmation that all went fine
       run: echo All went ok!
+
+  build-image:
+    name: Build Image
+    runs-on: ubuntu-latest
+    permissions:
+      packages: write # needed to push docker image to ghcr.io
+
+    steps:        
+      - name: Login to GHCR
+        uses: docker/login-action@v2
+        with:
+          registry: ghcr.io
+          # NOTE: github.actor is the username of the person who triggered the workflow
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+        
+      - name: Docker build
+        uses: docker/build-push-action@v4
+        with:
+          # only push image when we merge PRs or push to main branch
+          push: ${{ github.event_name != 'pull_request' }}
+          # hardcoded for a single name/tags
+          tags: ghcr.io/orsted/github-actions:simple
