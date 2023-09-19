@@ -38,10 +38,10 @@ jobs:
     - name: Check with isort
       run: isort . --check
     - name: Check with PyRight
-      continue_on_error: true
+      continue-on-error: true
       run: pyright .
     - name: Test with pytest
-      continue_on_error: true
+      continue-on-error: true
       run: |
         pytest
     - name: Confirmation that all went fine
