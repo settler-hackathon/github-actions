@@ -9,6 +9,7 @@ env:
 
 jobs:
   build-image:
+    name: build-image
     permissions:
       contents: read
       packages: write
@@ -37,9 +38,8 @@ jobs:
            docker run  ghcr.io/${{ github.repository_owner }}/github-actions_${{ matrix.python-version }}:latest pytest
       - name: Confirmation that all went fine
         run: echo All went ok!
-
-
   push-image:
+    needs: [build-image]
     permissions:
       contents: read
       packages: write
