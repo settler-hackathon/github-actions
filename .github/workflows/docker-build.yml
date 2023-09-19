@@ -25,6 +25,7 @@ jobs:
 
   build-image:
     permissions:
+      contents: read
       packages: write
     name: Build Image
     runs-on: ubuntu-latest
