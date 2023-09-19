@@ -49,10 +49,10 @@ jobs:
       uses: psf/black@stable
       with:
         options: "--check --verbose"
-        src: "./src"
+        src: "."
         version: "~= 23.9.1"
     - name: Use Black
       if: always()
-      run: black .
+      run: black . --check --verbose
     - name: Confirmation that all went fine
       run: echo All went ok!
