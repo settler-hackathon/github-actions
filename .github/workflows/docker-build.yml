@@ -37,8 +37,3 @@ jobs:
         
       - name: Docker build
         uses: docker/build-push-action@v4
-        with:
-          # only push image when we merge PRs or push to main branch
-          push: ${{ github.event_name != 'pull_request' }}
-          # hardcoded for a single name/tags
-          tags: ghcr.io/orsted/github-actions:simple
