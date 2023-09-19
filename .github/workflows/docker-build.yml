@@ -5,6 +5,7 @@ on:
       branches: [ "main" ]
   workflow_dispatch:
 
+
 jobs:
   # test-versions:
   #   runs-on: ubuntu-latest
@@ -23,6 +24,8 @@ jobs:
   #     run: echo All went ok!
 
   build-image:
+    permissions:
+      packages: write
     name: Build Image
     runs-on: ubuntu-latest
     steps:
