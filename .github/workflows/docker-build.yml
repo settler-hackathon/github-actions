@@ -1,6 +1,8 @@
 name: Manual trigger
 
 on:
+  push:
+      branches: [ "main" ]
   workflow_dispatch:
 
 jobs:
