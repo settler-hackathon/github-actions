@@ -52,12 +52,12 @@ jobs:
         env:
             DOCKER_BUILD_NUMBER: ${{ github.run_number }}
         run: |
-          docker build --build-arg PYTHON_VERSION=$PYTHON_DEPLOYMENT_VERSION --build-arg ENV=prod -t ghcr.io/${{ github.repository_owner }}/github-actions:${DOCKER_BUILD_NUMBER} .
+          docker build --build-arg PYTHON_VERSION=$PYTHON_DEPLOYMENT_VERSION --build-arg ENV=prod -t ghcr.io/${{ github.repository_owner }}/github-actions:${DOCKER_BUILD_NUMBER} -t ghcr.io/${{ github.repository_owner }}/github-actions:latest .
       - name: Login to GHCR
         run: echo "${{ secrets.GITHUB_TOKEN }}" | docker login ghcr.io -u ${{ github.repository_owner }} --password-stdin
       - name: Push Docker Image
         env:
             DOCKER_BUILD_NUMBER: ${{ github.run_number }}
         run: |
-          docker push ghcr.io/${{ github.repository_owner }}/github-actions:${DOCKER_BUILD_NUMBER}
+          docker push ghcr.io/${{ github.repository_owner }}/github-actions:${DOCKER_BUILD_NUMBER} --all-tags
 
