@@ -1,11 +1,15 @@
-FROM python:3.10-slim-bullseye
+# syntax=docker/dockerfile:1
+ARG PYTHON_VERSION=3.9
+ARG ENV=dev
 
-WORKDIR /python-docker
+FROM python:$PYTHON_VERSION-slim-buster
 
-COPY requirements.txt requirements.txt
+WORKDIR /github-actions
+
 COPY requirements-dev.txt requirements-dev.txt
-RUN pip3 install -r requirements-dev.txt
+COPY requirements.txt requirements.txt
 
+RUN if [ "$ENV" = "prod" ] ; then pip3 install -r requirements.txt ; else  pip3 install -r requirements-dev.txt ; fi
 COPY . .
 
 CMD [ "python3", "-m" , "flask", "run", "--host=0.0.0.0"]
