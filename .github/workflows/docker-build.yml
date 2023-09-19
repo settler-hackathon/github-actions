@@ -64,4 +64,19 @@ jobs:
       - name: Confirmation that all went fine
         run: echo All went ok!
 
-  # docker push ghcr.io/${{ github.repository_owner }}/github-actions:latest
+
+  push-image:
+    permissions:
+      contents: read
+      packages: write
+    name: Push Image
+    needs: [build-image]
+    runs-on: ubuntu-latest
+    steps:
+      - name: Build Docker Image
+        run: |
+          docker build --build-arg PYTHON_VERSION=3.10 --build-arg ENV=prod -t ghcr.io/${{ github.repository_owner }}/github-actions:latest .
+      - name: Push Docker Image
+        run: |
+          docker push ghcr.io/${{ github.repository_owner }}/github-actions:latest
+      
