@@ -13,7 +13,6 @@ jobs:
     permissions:
       contents: read
       packages: write
-    name: Build Image
     runs-on: ubuntu-latest
     strategy:
       fail-fast: false
