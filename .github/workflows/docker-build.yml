@@ -38,7 +38,6 @@ jobs:
       - name: Confirmation that all went fine
         run: echo All went ok!
   push-image:
-    needs: [build-image]
     permissions:
       contents: read
       packages: write
