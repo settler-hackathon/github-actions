@@ -28,7 +28,12 @@ jobs:
     permissions:
       packages: write # needed to push docker image to ghcr.io
 
-    steps:        
+    steps:
+      - name: Debugging Checkout
+        run: |
+          echo "Current directory: $(pwd)"
+          ls -la
+
       - uses: actions/checkout@v3
       # -
       #   name: Set up QEMU
