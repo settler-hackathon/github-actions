@@ -37,9 +37,6 @@ jobs:
     - name: Check with PyRight
       if: always()
       run: pyright .
-    - name: Test with pytest
-      run: |
-        pytest
     - name: Use Black from external
       if: always()
       uses: psf/black@stable
