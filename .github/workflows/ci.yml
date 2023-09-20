@@ -10,15 +10,15 @@ on:
     branches: [ "main" ]
 
 jobs:
-  build-ci-python-3_9:
-    uses: settler-hackathon/github-templates/.github/workflows/python-ci.yml@main
-    with:
-      python-version: "3.9"
+  # build-ci-python-3_9:
+  #   uses: settler-hackathon/github-templates/.github/workflows/python-ci.yml@main
+  #   with:
+  #     python-version: "3.9"
 
-  build-ci-python-3_10:
-    uses: settler-hackathon/github-templates/.github/workflows/python-ci.yml@main
-    with:
-      python-version: "3.10"
+  # build-ci-python-3_10:
+  #   uses: settler-hackathon/github-templates/.github/workflows/python-ci.yml@main
+  #   with:
+  #     python-version: "3.10"
 
   build-ci-python-3_11:
     uses: settler-hackathon/github-templates/.github/workflows/python-ci.yml@main
