@@ -11,6 +11,6 @@ on:
 
 jobs:
   build-ci:
-    uses: settler-hackathon/github-templates/.github/workflows/python-ci.yml@main\
+    uses: settler-hackathon/github-templates/.github/workflows/python-ci.yml@main
     with:
       python-version: "3.9"
