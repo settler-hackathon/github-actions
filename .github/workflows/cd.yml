@@ -52,5 +52,4 @@ jobs:
     with:
       ENV: $ENV
       REPO-NAME: "github-actions"
-      python-version: "3.11"
       PYTHON_DEPLOYMENT_VERSION: "3.11"
