@@ -18,9 +18,9 @@ jobs:
       PYTHON_DEPLOYMENT_VERSION: $PYTHON_DEPLOYMENT_VERSION
       ENV: $ENV
 
-  publish-cd-python-3_9:
-  uses: settler-hackathon/github-templates/.github/workflows/python-cd.yml@main
-  with:
-    python-version: "3.10"
-    PYTHON_DEPLOYMENT_VERSION: $PYTHON_DEPLOYMENT_VERSION
-    ENV: $ENV
+  publish-cd-python-3_10:
+    uses: settler-hackathon/github-templates/.github/workflows/python-cd.yml@main
+    with:
+      python-version: "3.10"
+      PYTHON_DEPLOYMENT_VERSION: $PYTHON_DEPLOYMENT_VERSION
+      ENV: $ENV
