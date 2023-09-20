@@ -9,56 +9,16 @@ env:
   PYTHON_DEPLOYMENT_VERSION: 3.11
   ENV: prod
 
+
 jobs:
-  build-image:
-    name: build-image
-    permissions:
-      contents: read
-      packages: write
-    runs-on: ubuntu-latest
-    strategy:
-      fail-fast: false
-      matrix:
-        python-version: ["3.9", "3.10", "3.11"]
-    steps:
-      - name: Checkout Repository
-        uses: actions/checkout@v3
+  publish-cd-python-3_9:
+    uses: settler-hackathon/github-templates/.github/workflows/python-cd.yml@main
+    with:
+      python-version: "3.9"
 
-      - name: Set up Docker Buildx
-        uses: docker/setup-buildx-action@v2.9.1
-
-      - name: Login to GHCR
-        run: echo "${{ secrets.GITHUB_TOKEN }}" | docker login ghcr.io -u ${{ github.repository_owner }} --password-stdin
-
-      - name: Build Docker Image
-        run: |
-          docker build --build-arg PYTHON_VERSION=${{ matrix.python-version }} --build-arg ENV=dev -t ghcr.io/${{ github.repository_owner }}/github-actions_${{ matrix.python-version }}:latest .
-
-      - name: Test with pytest
-        run: |
-           docker run  ghcr.io/${{ github.repository_owner }}/github-actions_${{ matrix.python-version }}:latest pytest
-      - name: Confirmation that all went fine
-        run: echo All went ok!
-  push-image:
-    permissions:
-      contents: read
-      packages: write
-    name: Push Image
-    needs: build-image
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout Repository
-        uses: actions/checkout@v3
-      - name: Build Docker Image
-        env:
-            DOCKER_BUILD_NUMBER: ${{ github.run_number }}
-        run: |
-          docker build --build-arg PYTHON_VERSION=$PYTHON_DEPLOYMENT_VERSION --build-arg ENV=$ENV -t ghcr.io/${{ github.repository_owner }}/github-actions:${DOCKER_BUILD_NUMBER} -t ghcr.io/${{ github.repository_owner }}/github-actions:latest .
-      - name: Login to GHCR
-        run: echo "${{ secrets.GITHUB_TOKEN }}" | docker login ghcr.io -u ${{ github.repository_owner }} --password-stdin
-      - name: Push Docker Image
-        env:
-            DOCKER_BUILD_NUMBER: ${{ github.run_number }}
-        run: |
-          docker push ghcr.io/${{ github.repository_owner }}/github-actions --all-tags
-
+  publish-cd-python-3_9:
+    uses: settler-hackathon/github-templates/.github/workflows/python-cd.yml@main
+    with:
+      python-version: "3.10"
+      PYTHON_DEPLOYMENT_VERSION: $PYTHON_DEPLOYMENT_VERSION
+      ENV: $ENV
