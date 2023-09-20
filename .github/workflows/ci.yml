@@ -13,4 +13,4 @@ jobs:
   build-ci:
     uses: settler-hackathon/github-templates/.github/workflows/python-ci.yml@main\
     with:
-      python-version: ["3.9", "3.10", "3.11"]
+      python-version: "3.9"
