@@ -26,7 +26,6 @@ jobs:
     permissions:
       contents: read
       packages: write
-    needs: build-image
     uses: settler-hackathon/github-templates/.github/workflows/python-cd.yml@main
     with:
       python-version: "3.10"
