@@ -19,7 +19,6 @@ jobs:
     uses: settler-hackathon/github-templates/.github/workflows/python-cd.yml@main
     with:
       python-version: "3.9"
-      PYTHON_DEPLOYMENT_VERSION: $PYTHON_DEPLOYMENT_VERSION
       ENV: $ENV
       REPO-NAME: "github-actions"
 
@@ -31,7 +30,6 @@ jobs:
     uses: settler-hackathon/github-templates/.github/workflows/python-cd.yml@main
     with:
       python-version: "3.10"
-      PYTHON_DEPLOYMENT_VERSION: $PYTHON_DEPLOYMENT_VERSION
       ENV: $ENV
       REPO-NAME: "github-actions"
 
@@ -42,6 +40,16 @@ jobs:
     uses: settler-hackathon/github-templates/.github/workflows/python-cd.yml@main
     with:
       python-version: "3.11"
-      PYTHON_DEPLOYMENT_VERSION: $PYTHON_DEPLOYMENT_VERSION
       ENV: $ENV
       REPO-NAME: "github-actions"
+
+
+  publish-image-python-3_11:
+    permissions:
+      contents: read
+      packages: write
+    uses: settler-hackathon/github-templates/.github/workflows/python-push-image.yml@main
+    with:
+      ENV: $ENV
+      REPO-NAME: "github-actions"
+      PYTHON_DEPLOYMENT_VERSION: "3.11"
