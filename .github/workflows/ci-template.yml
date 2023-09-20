@@ -11,4 +11,4 @@ on:
 
 jobs:
   build:
-    uses: settler-hackathon/.github/workflows/python-ci.yml@main
+    uses: settler-hackathon/github-templates/.github/workflows/python-ci.yml@main
