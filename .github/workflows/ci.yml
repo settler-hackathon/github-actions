@@ -19,3 +19,8 @@ jobs:
     uses: settler-hackathon/github-templates/.github/workflows/python-ci.yml@main
     with:
       python-version: "3.10"
+
+  build-ci-python-3_11:
+    uses: settler-hackathon/github-templates/.github/workflows/python-ci.yml@main
+    with:
+      python-version: "3.11"
