@@ -11,7 +11,7 @@ env:
 
 
 jobs:
-  publish-cd-python-3_9:
+  test-python-3_9:
     permissions:
       contents: read
       packages: write
@@ -22,7 +22,7 @@ jobs:
       REPO-NAME: "github-actions"
 
 
-  publish-cd-python-3_10:
+  test-python-3_10:
     permissions:
       contents: read
       packages: write
@@ -32,7 +32,7 @@ jobs:
       ENV: $ENV
       REPO-NAME: "github-actions"
 
-  publish-cd-python-3_11:
+  test-python-3_11:
     permissions:
       contents: read
       packages: write
@@ -44,7 +44,7 @@ jobs:
 
 
   publish-image-python-3_11:
-    needs: ["publish-cd-python-3_9","publish-cd-python-3_10","publish-cd-python-3_11"]
+    needs: ["test-python-3_9","test-python-3_10","test-python-3_11"]
     permissions:
       contents: read
       packages: write
