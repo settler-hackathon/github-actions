@@ -10,5 +10,5 @@ on:
     branches: [ "main" ]
 
 jobs:
-  build:
+  build-ci:
     uses: settler-hackathon/github-templates/.github/workflows/python-ci.yml@main
